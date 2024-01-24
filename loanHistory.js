@@ -23,7 +23,10 @@ router.route("/farmer").post(async (req, res) => {
     }
     catch(err) {
         console.log(err);
-        res.status(400).json("Error: Internal server error");
+        const response = {
+            error: "Error: Internal server error"
+        }
+        res.status(400).json(response);
     }
 });
 
@@ -49,7 +52,10 @@ router.route("/sme").post(async (req, res) => {
     }
     catch(err) {
         console.log(err);
-        res.status(400).json("Error: Internal server error");
+        const response = {
+            error: "Error: Internal server error"
+        }
+        res.status(400).json(response);
     }
 });
 
