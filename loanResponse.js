@@ -143,7 +143,7 @@ router.route("/farmer/accept").post(async (req, res) => {
     catch(err) {
         console.log(err);
         const response = {
-            error: "Error: Internal server error"
+            error: "Error: Insufficient budget for the loan approval!"
         }
         res.status(400).json(response);
     }
@@ -172,7 +172,7 @@ router.route("/sme/accept").post(async (req, res) => {
     catch(err) {
         console.log(err);
         const response = {
-            error: "Error: Internal server error"
+            error: "Error: Insufficient budget for the loan approval!"
         }
         res.status(400).json(response);
     }
