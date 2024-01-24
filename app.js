@@ -11,10 +11,12 @@ app.use(cors({ origin: "*" }));
 const LoanHistoryRouter = require('./loanHistory.js');
 const LoanRequestRouter = require('./loanRequest.js');
 const LoanResponseRouter = require('./loanResponse.js');
+const LoanPendingRouter = require('./loanPending.js');
 
 app.use('/loan_history', LoanHistoryRouter);
 app.use('/loan_request', LoanRequestRouter);
 app.use('/loan_response', LoanResponseRouter);
+app.use('/loan_pending', LoanPendingRouter);
 
 app.listen(PORT, async () => {
     console.log(`Listening on port ${PORT}`);
