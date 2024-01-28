@@ -6,10 +6,10 @@ router.route("/farmer").post(async (req, res) => {
     const { agent_id } = req.body;
     console.log(agent_id);
     let data = await supabase.any(
-      `select "request_id", "requestedMin", "requestedMax", "requestTime", "status", "rank", "points", "farmerType", "name" as farmerName, "avatarLink", "phone"\ 
+      `select "request_id", "requestedMin", "requestedMax", "description", "requestTime", "status", "rank", "points", "farmerType", "name" as farmerName, "avatarLink", "phone"\ 
         from\
         (select\
-          "request_id", "farmerId", "requestedMin", "requestedMax", "requestTime", "status", "rank", "points", "farmerType"\
+          "request_id", "farmerId", "requestedMin", "requestedMax", "requestTime", "status", "description", "rank", "points", "farmerType"\
         from\
           (\
             select\
@@ -19,6 +19,7 @@ router.route("/farmer").post(async (req, res) => {
               "requestedMin",\
               "requestedMax",\
               "requestTime",\
+              "description",\
               "status"\
             from\
               "FarmerLoan"\
@@ -56,10 +57,10 @@ router.route("/sme").post(async (req, res) => {
   try {
     const { agent_id } = req.body;
     let data = await supabase.any(
-      `select "request_id", "requestedMin", "requestedMax", "requestTime", "status", "rank", "points", "name" as smeName, "avatarLink", "phone"\ 
+      `select "request_id", "requestedMin", "requestedMax", "requestTime", "description", "status", "rank", "points", "name" as smeName, "avatarLink", "phone"\ 
       from\
       (select\
-        "request_id", "smeId", "requestedMin", "requestedMax", "requestTime", "status", "rank", "points"\
+        "request_id", "smeId", "requestedMin", "requestedMax", "description", "requestTime", "status", "rank", "points"\
       from\
         (\
           select\
@@ -69,6 +70,7 @@ router.route("/sme").post(async (req, res) => {
             "requestedMin",\
             "requestedMax",\
             "requestTime",\
+            "description",\
             "status"\
           from\
             "SmeLoan"\
