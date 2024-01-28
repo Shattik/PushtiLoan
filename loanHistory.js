@@ -38,7 +38,7 @@ router.route("/sme").post(async (req, res) => {
     
     try {
         let size = await supabase.any(`SELECT count(*) FROM "SmeLoan" WHERE "smeId" = $1 AND "status" != $2`, [sme_id, "ongoing"]);
-        let data = await supabase.any(`SELECT "id", "approvedAmount", "remainingAmount", "status", "approvalTime", "finishTime" FROM "SmeLoan" WHERE "smeId" = $1 AND "status" != $2 order by "id" DESC limit 10 offset $3`, [sme_id, "ongoing" ,page*10]);
+        let data = await supabase.any(`SELECT "id", "requestTime", "approvedAmount", "remainingAmount", "status", "approvalTime", "finishTime" FROM "SmeLoan" WHERE "smeId" = $1 AND "status" != $2 order by "id" DESC limit 10 offset $3`, [sme_id, "ongoing" ,page*10]);
         let ongoing = await supabase.any(`SELECT "id", "requestedMin", "requestedMax", "approvedAmount", "remainingAmount", "status", "approvalTime", "requestTime", "approvalTime" FROM "SmeLoan" WHERE "smeId" = $1 AND ("status" = $2 OR "status" = $3 OR "status" = $4 OR "status" = $5)`, [sme_id, "ongoing", "pending", "interviewed", "inspected"]);
         const response = {
             size: size[0].count,
